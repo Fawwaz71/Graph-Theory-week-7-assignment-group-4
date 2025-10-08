@@ -180,6 +180,14 @@ cout << "\n";
 ```
 Displays the minimum total cost and the corresponding sequence of edge IDs that form the optimal TSP route.
 
+example:
+
+
+<img width="468" height="244" alt="image" src="https://github.com/user-attachments/assets/1e0c564b-e417-4e7d-9203-c6e480d9f9f2" />
+
+<img width="545" height="153" alt="image" src="https://github.com/user-attachments/assets/da0ae045-63d2-455a-bc6f-732c6e363065" />
+
+
 
 
 # The Knight Tour
