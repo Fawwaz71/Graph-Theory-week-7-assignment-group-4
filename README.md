@@ -279,7 +279,7 @@ Reads N vertices and M edges. Note that the implementation uses 1-based indexing
 #### Explanation
 The Floyd–Warshall algorithm calculates the shortest distance (dist[i][j]) between every pair of vertices. This ensures that when pairing odd vertices, we use the shortest possible path between them, which may traverse multiple edges.
 
-### 3️⃣ Finding Odd-Degree Vertices & Minimum Pairing (Bitmask DP)
+### 3 Finding Odd-Degree Vertices & Minimum Pairing (Bitmask DP)
 ```c++
  // 2) Find odd-degree vertices
     vector<int> deg(n+1,0);
@@ -354,7 +354,7 @@ This is the core step that creates the Eulerian graph. For every pair of odd ver
 
 - It copies and adds these edges to the main edges vector. This effectively duplicates the shortest path edges, ensuring those specific paths are traversed twice, making the degrees of the original odd vertices even.
 
-### 5️⃣ Path Reconstruction and Edge Duplication (Implicit Step)
+### 5 Path Reconstruction and Edge Duplication (Implicit Step)
 ```c++
  // 5) Build full adjacency (include duplicates)
     int totalEdges = (int)edges.size();
@@ -415,7 +415,7 @@ Impact of Priority Sorting:
 - Default Fallbacks: The sort relies on standard rules (Neighbor ID, Edge Cost, Edge Name, Internal Edge ID) only if the custom overrides do not apply to the current pair of edges.
 
 
-### 6️⃣ Deterministic Hierholzer's Algorithm
+### 6 Deterministic Hierholzer's Algorithm
 ```c++
  long long finalCost = baseCost + addCost;
     // Deterministic Hierholzer
@@ -460,7 +460,7 @@ With the total cost calculated (finalCost) and the adjacency lists sorted using 
 - used[eid] is a boolean array tracking whether an edge has been consumed, preventing double counting in the multigraph.
 
 - Edges are collected in reverse order (edgeSeqRev) upon backtracking, and then reversed at the end to form the final path (bestEdgeSeq).
-### 7️⃣ Output
+### 7 Output
 ```c++
  cout << "Cost: " << finalCost << "\n";
     cout << "Route: ";
