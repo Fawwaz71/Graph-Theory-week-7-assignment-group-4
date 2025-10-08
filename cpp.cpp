@@ -1,4 +1,4 @@
-#include <bi
+#include <bits/stdc++.h>
 using namespace std;
 struct Edge {
     int name, u, v, w;
@@ -213,3 +213,4 @@ int main(){
     cout << "\n";
     return 0;
 }
+
