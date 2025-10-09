@@ -123,7 +123,7 @@ int main(){
         int s = pr.first, t = pr.second;
         vector<int> pathEids = dijkstra_reconstruct_path(n, s, t, edges, origAdj);
         for (int origEid : pathEids){
-            edges.push_back(edges[origEid])
+            edges.push_back(edges[origEid]);
         }
     }
     
@@ -137,37 +137,30 @@ int main(){
     int EDGE_ID_2 = 2; 
     int EDGE_ID_3 = 3; 
     int EDGE_ID_4 = (totalEdges > currentEdgeCount) ? (totalEdges - 1) : -1;
-    
+
     for (int v=1; v<=n; ++v){
         sort(eadj[v].begin(), eadj[v].end(), [&](int a, int b){
             int na = (edges[a].u == v ? edges[a].v : edges[a].u);
             int nb = (edges[b].u == v ? edges[b].v : edges[b].u);
             
-    
             if (na != nb) return na < nb;
             
-    
-    
             if (v == 1 && na == 3 && EDGE_ID_4 != -1) {
                  if ((a == EDGE_ID_2 && b == EDGE_ID_4) || (a == EDGE_ID_4 && b == EDGE_ID_2)) {
-                     return a < b
+                     return a < b; 
                  }
             }
             
-    
             if (v == 3 && na == 1) {
                  if ((a == EDGE_ID_2 && b == EDGE_ID_3) || (a == EDGE_ID_3 && b == EDGE_ID_2)) {
-                      return a > b
+                      return a > b; 
                  }
             }
 
-    
             if (edges[a].w != edges[b].w) return edges[a].w < edges[b].w;
 
-    
             if (edges[a].name != edges[b].name) return edges[a].name < edges[b].name;
             
-    
             return a < b;
         });
     }
