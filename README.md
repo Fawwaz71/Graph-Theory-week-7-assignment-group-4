@@ -126,7 +126,6 @@ do {
     bool invalid = false;
 
     for (int next : nodes) {
-        if (edgeid[now][next] == -1) { invalid = true; break; }
         totalcost += cost[now][next];
         route.push_back(edgeid[now][next]);
         now = next;
