@@ -6,35 +6,33 @@
 using namespace std;
 
 struct edge {
-    int id;
+    int name;
     int from;
     int to;
     int cost;
 };
 
 int main() {
-    int n, e;
+    int n, e, start;
     cin >> n >> e;
 
-    int inf = 1000000000;
+    int inf = 1000000001;
     vector<edge> edges(e);
     vector<vector<int>> cost(n + 1, vector<int>(n + 1, inf));
-    vector<vector<int>> edgeid(n + 1, vector<int>(n + 1, -1));
+    vector<vector<int>> edge_name(n + 1, vector<int>(n + 1, -1));
 
     for (int i = 0; i < e; i++) {
-        cin >> edges[i].id >> edges[i].from >> edges[i].to >> edges[i].cost;
+        cin >> edges[i].name >> edges[i].from >> edges[i].to >> edges[i].cost;
         int u = edges[i].from;
         int v = edges[i].to;
         int c = edges[i].cost;
-        int id = edges[i].id;
+        int name = edges[i].name;
 
-        if (c < cost[u][v] || (c == cost[u][v] && (edgeid[u][v] == -1 || id < edgeid[u][v]))) {
+        if (c < cost[u][v] || (c == cost[u][v] && (edge_name[u][v] == -1 || name < edge_name[u][v]))) {
             cost[u][v] = cost[v][u] = c;
-            edgeid[u][v] = edgeid[v][u] = id;
+            edge_name[u][v] = edge_name[v][u] = name;
         }
     }
-
-    int start;
     cin >> start;
 
     vector<int> nodes;
@@ -50,20 +48,15 @@ int main() {
         int now = start;
         int totalcost = 0;
         vector<int> route;
-        bool invalid = false;
 
-        for (int next : nodes) {
-            if (edgeid[now][next] == -1) { invalid = true; break; }
+        for (int next:nodes) {
             totalcost += cost[now][next];
-            route.push_back(edgeid[now][next]);
+            route.push_back(edge_name[now][next]);
             now = next;
         }
 
-        if (invalid || edgeid[now][start] == -1)
-            continue;
-
         totalcost += cost[now][start];
-        route.push_back(edgeid[now][start]);
+        route.push_back(edge_name[now][start]);
 
         if (totalcost < bestcost || (totalcost == bestcost && route < bestroute)) {
             bestcost = totalcost;
@@ -72,19 +65,12 @@ int main() {
 
     } while (next_permutation(nodes.begin(), nodes.end()));
 
-    if (bestcost == inf) {
-        cout << "cost: -1\nroute:\n";
-        return 0;
-    }
-
-    cout << "cost: " << bestcost << "\n";
-    cout << "route: ";
+    cout << "cost:" << bestcost << "\n";
+    cout << "route:";
     for (size_t i = 0; i < bestroute.size(); i++) {
         cout << bestroute[i];
-        if (i + 1 < bestroute.size()) cout << ", ";
+        if (i + 1 < bestroute.size()) cout << ",";
     }
-    cout << "\n";
-
     return 0;
 }
 ```
